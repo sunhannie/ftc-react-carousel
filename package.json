@@ -1,10 +1,13 @@
 {
   "name": "@ftchinese/ftc-react-carousel",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "It is a carousel that can shuttle image using react technology stack",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config ./webpack.config.js --progress --profile --colors",
+    "clean": "rimraf build",
+    "dev": "webpack --mode development",
+    "prod": "webpack --mode production",
     "start": "node server.js"
   },
   "repository": {

@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 import   './carousel.scss';
 import Slide from './slide';
 import  { imgs } from  './imgs';
@@ -80,7 +79,7 @@ class Carousel extends React.Component {
             this.dotIndex(true);
             this._dotActive();
 
-            console.log(this.state.index);
+            // console.log(this.state.index);
         },1000)
     }
 
@@ -144,26 +143,24 @@ class Carousel extends React.Component {
     }
 
     render() {
-    
-
         return (
 
-   <div className = {"carousel-container"} onMouseOver={this.mouseover.bind(this)} onMouseOut={this.mouseout.bind(this)} ref={"container"} style={{color:'red'}}>
-        <Slide />  
-        <ul className="dots">
-            {imgs.slice(1).map((v,k) => {       
-                if(k==0){
-                    return <li index={`${k+1}`} className="active dot" key={k} onClick={this.dotClick.bind(this)}></li>
-                }else{
-                    return <li index={`${k+1}`} className="dot" key={k} onClick={this.dotClick.bind(this)}></li>
-                }
-            }
-                
-            )}
-        </ul>
-        <div className="pre" onClick={this.preClick.bind(this)}> 《 </div>
-        <div className="next" onClick={this.nextCilck.bind(this)}> 》 </div>
- </div> 
+            <div className = {"carousel-container"} onMouseOver={this.mouseover.bind(this)} onMouseOut={this.mouseout.bind(this)} ref={"container"} style={{color:'red'}}>
+                    <Slide />  
+                    <ul className="dots">
+                        {imgs.slice(1).map((v,k) => {       
+                            if(k==0){
+                                return <li index={`${k+1}`} className="active dot" key={k} onClick={this.dotClick.bind(this)}></li>
+                            }else{
+                                return <li index={`${k+1}`} className="dot" key={k} onClick={this.dotClick.bind(this)}></li>
+                            }
+                        }
+                            
+                        )}
+                    </ul>
+                    <div className="pre" onClick={this.preClick.bind(this)}> 《 </div>
+                    <div className="next" onClick={this.nextCilck.bind(this)}> 》 </div>
+            </div> 
         );
     }
 
