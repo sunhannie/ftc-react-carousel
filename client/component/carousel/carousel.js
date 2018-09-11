@@ -24,14 +24,11 @@ class Carousel extends React.Component {
             if(this.state.index === parseInt(dots[i].getAttribute("index"))){
                 dots[i].className = "dot active";
             }
-        }
-        console.log('_dotActive this.state.index'+this.state.index); //因为没有相等，获取被点击的对象
-      
+        }    
     }
 
     dotIndex(add){
-        // 往下点up和down值都一样，证明没那么快响应，没有累加动作。我觉得是刚放上去还没到1000s，那步还没有执行
-        console.log('dotIndex up this.state.index'+this.state.index);
+        // console.log('dotIndex up this.state.index'+this.state.index);
         if(add){
             this.setState({
                 index:Number(this.state.index)+1
@@ -62,18 +59,7 @@ class Carousel extends React.Component {
                 } 
             })
         }
-        // 如果是异步，可能此处还不能获取到this.state.index，应该用函数形式。但是此例子获取到了，可是不用函数this.state.index会到7
-        // if(this.state.index > 6){
-        //     this.setState({
-        //         index:1
-        //     })
-        // }else if(this.state.index < 1){
-        //     this.setState({
-        //         index:6
-        //     })
-        // } 
-
-        console.log('dotIndex down this.state.index'+this.state.index);
+        // console.log('dotIndex down this.state.index'+this.state.index);
     }
 
     componentWillMount() {
@@ -86,7 +72,6 @@ class Carousel extends React.Component {
     componentDidMount() {
         this.isNext = false;
         this.autoPlay();
-       
     }
 
     autoPlay(){
@@ -121,21 +106,17 @@ class Carousel extends React.Component {
         for(var i=0 ;i<len ;i++){
             dots[i].className = "dot";
         }
-
-        let index = event.target.getAttribute("index");    
-        let index1 = this.state.index;
-
-        if(this.state.index === index){
-                event.target.className = "dot active";
-        }
-
-        this.setState({
-            index:index
-        })
-        this.animation(( this.state.index - index)*(-600));
         
-        // this._dotActive() ;
-        console.log('index:'+index);
+        let index = event.target.getAttribute("index");    
+
+        this.setState((prevState) => {
+            return { index:index } 
+        })
+
+        event.target.className = "dot active";
+      
+        this.animation(( this.state.index - index)*(-600));
+
     }
 
 
@@ -154,13 +135,9 @@ class Carousel extends React.Component {
         
         // 点击右边图片有立马更新，但是指引没有立马更新，再点一次才更新
     }
-    /*容器的hover事件*/
+
     mouseover(){
         this.stopAutoPlay();
-        // this.setState({
-        //     index:Number(this.state.index)
-        // });
-        console.log('mouseover ：'+this.state.index);
     }
     mouseout(){
         this.autoPlay();

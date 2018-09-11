@@ -8,7 +8,7 @@ const Slide = (props) =>{
     let imgsNew = imgs.map(function(v,k){
         return <img src={v}  key={k} />
     });
-    console.log(imgsNew);
+
     return (
             <div className="list" style={{left:'0px'}} >
                 {imgsNew}
